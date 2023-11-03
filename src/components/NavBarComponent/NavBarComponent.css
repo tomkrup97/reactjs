@@ -1,0 +1,25 @@
+
+.mainLogo {
+    max-height: 5rem;
+    position: relative;
+    margin-right: 1em;
+}
+
+#Navbar {
+    color: rgb(0, 0, 0);
+}
+
+.me-auto {
+    color: rgb(127, 129, 255);
+    display: flex;
+    
+}
+
+Nav.Link {
+    color: rgb(0, 0, 0);
+}
+
+.Favoritos {
+    color: black;
+    text-decoration: none;
+}
