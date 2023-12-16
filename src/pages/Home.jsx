@@ -1,27 +1,28 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBarComponent from '../components/NavBarComponent/NavBarComponent';
 import '../index.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ItemListContainer from '../components/ItemListContainer/ItemListContainer';
+import {collection, getDocs, getFirestore} from 'firebase/firestore';
 
 
 export const Home = () => {
   
-  const [products, setProducts] = useState ([]);
+  const [bands, setBands] = useState ([]);
 
   useEffect (() => {
-    axios
-      .get('https://dummyjson.com/products/?limit=10')
-      .then((res) => {
-      setProducts(res.data.products);
-    })
-    .catch((error) => console.log(error));
+    const db = getFirestore();
+    const bandsCollection = collection(db, 'bands');
+
+    getDocs(bandsCollection).then((snapshot) => {
+      setBands(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+    }).catch(() => SpeechSynthesisErrorEvent(true)).finally(() => setLoading(false));
   }, []);
 
+  console.log(bands);
   return <div>
     
-    <ItemListContainer products={products} />
+    <ItemListContainer bands={bands} />
   </div>;
 }

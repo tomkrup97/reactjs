@@ -5,3 +5,7 @@
     text-align: center;
     font-weight: 500;
 }
+
+div {
+    background-color: transparent;
+}

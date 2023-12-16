@@ -20,7 +20,7 @@ const NavBarComponent = () => {
   }, []);
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" id="Navbar">
+    <Navbar expand="lg" className="bg-body-tertiary" id="Navbar" style={{ backgroundColor: "red" }}>
       <Container className="conte">
         <img src={main_logo} className="mainLogo" />
         <Navbar.Brand><Link to={"/"} className="brandLink">Banda Tributo</Link></Navbar.Brand>
@@ -38,7 +38,7 @@ const NavBarComponent = () => {
               
             </NavDropdown>
           </Nav>
-          <FavButtonComponent />
+          <Link to="/favorites"><FavButtonComponent></FavButtonComponent></Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

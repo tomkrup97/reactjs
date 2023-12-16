@@ -1,18 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBarComponent from './components/NavBarComponent/NavBarComponent';
 import './index.css';
-import axios from 'axios';
-import { useEffect } from 'react';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import { MainRouter } from "./router/MainRouter";
+import { FavoritesProvider } from "./context/FavoritesContext"
 
-function App() {
+import React from 'react';
 
-  return <div>
-    
-    <MainRouter />
-    
-  </div>;
-}
+
+const App = () => {
+  return (
+    <div>
+      <FavoritesProvider>
+        <MainRouter />
+      </FavoritesProvider>
+    </div>
+  );
+};
 
 export default App;

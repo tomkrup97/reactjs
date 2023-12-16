@@ -1,10 +1,10 @@
-
+import BandFavSelector from '../BandFavSelector/BandFavSelector';
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import "./ItemListContainer.css";
 import { Card } from 'react-bootstrap';
 
-const ItemListContainer = ({ products }) => {
+const ItemListContainer = ({ bands }) => {
 
        
     return(
@@ -12,19 +12,19 @@ const ItemListContainer = ({ products }) => {
       style={{
         display: "flex",
         flexWrap: "wrap",
-        width: "100vw",
         justifyContent: "space-around",
       }}
     >
-      {products.map((product) => {
+      {bands.map((band) => {
         return (
-          <Card key={product.id} style={{ width: "18rem", margin: 20 }}>
-            <Link to={`/item/${product.id}`}>
-              <Card.Img variant="top" src={product.thumbnail} />
+          <Card key={band.id} style={{ width: "15rem", margin: "10px" }}>
+            <Link to={`/item/${band.id}`}>
+              <Card.Img variant="top" src={band.image} />
             </Link>
             <Card.Body>
-              <Card.Title>{product.title}</Card.Title>
-              <Card.Text>{product.description}</Card.Text>
+              <Card.Title>{band.name}</Card.Title>
+              <Card.Text>Tributo a <strong>{band.tribute}</strong></Card.Text>
+              <BandFavSelector band={band} />
             </Card.Body>
           </Card>
         );
