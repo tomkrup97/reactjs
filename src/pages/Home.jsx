@@ -4,23 +4,32 @@ import '../index.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ItemListContainer from '../components/ItemListContainer/ItemListContainer';
-import {collection, getDocs, getFirestore} from 'firebase/firestore';
+import { getDocs, getFirestore, collection, getDoc, doc, query, where} from "firebase/firestore";
 
 
 export const Home = () => {
   
   const [bands, setBands] = useState ([]);
 
-  useEffect (() => {
-    const db = getFirestore();
-    const bandsCollection = collection(db, 'bands');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-    getDocs(bandsCollection).then((snapshot) => {
-      setBands(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-    }).catch(() => SpeechSynthesisErrorEvent(true)).finally(() => setLoading(false));
+  useEffect(() => {
+    const db = getFirestore();
+    const collectionRef = collection(db, "bands");
+
+    getDocs(collectionRef)
+      .then((res) => {
+        const data = res.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setBands(data);
+      })
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
   }, []);
 
-  console.log(bands);
   return <div>
     
     <ItemListContainer bands={bands} />

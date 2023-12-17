@@ -29,13 +29,16 @@ const NavBarComponent = () => {
           <Nav className="me-auto">
             <Nav.Link> <Link to={"/"} className="menuLink">Inicio</Link></Nav.Link>
             <Nav.Link href="#link" className="menuLink">Shows</Nav.Link>
-            <NavDropdown title="Bandas" id="basic-nav-dropdown" className="menuLink">
-              {categories.map((category, index) => {
-                return (
-                  <NavDropdown.Item key={index}><Link to={`/category/${category}`}>{category}</Link></NavDropdown.Item>
-                )
-              })}
-              
+            <NavDropdown title="Bandas" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">
+                <Link to={"/category/tributo"}>Tributo</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                <Link to={"/category/cover"}>Cover</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">
+                <Link to={"/category/independiente"}>Independientes</Link>
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Link to="/favorites"><FavButtonComponent></FavButtonComponent></Link>
